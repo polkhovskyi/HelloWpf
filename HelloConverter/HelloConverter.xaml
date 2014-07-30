@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="HelloConverter.HelloConverter"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:data="clr-namespace:HelloConverter.Data"
+             xmlns:converters="clr-namespace:HelloConverter.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <converters:ValueEqualsParameterConverter x:Key="ValueEqualsParameterConverter" />
+    </UserControl.Resources>
+    <StackPanel>
+        <RadioButton GroupName="TestGroup" Content="ValueOne"
+                         IsChecked="{Binding Path=EnumValue, Converter={StaticResource ValueEqualsParameterConverter}, ConverterParameter={x:Static data:SimpleEnum.ValueOne}}" 
+                         />
+        <RadioButton GroupName="TestGroup" Content="ValueTwo"
+                         IsChecked="{Binding Path=EnumValue, Converter={StaticResource ValueEqualsParameterConverter}, ConverterParameter={x:Static data:SimpleEnum.ValueTwo}}" 
+                         />
+        <RadioButton GroupName="TestGroup" Content="ValueThree"
+                         IsChecked="{Binding Path=EnumValue, Converter={StaticResource ValueEqualsParameterConverter}, ConverterParameter={x:Static data:SimpleEnum.ValueThree}}" 
+                         />
+
+    </StackPanel>
+</UserControl>
