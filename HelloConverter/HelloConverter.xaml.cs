@@ -1,5 +1,6 @@
 ﻿using System.Windows.Controls;
 using HelloConverter.Data;
+using HelloConverter.ViewModels;
 
 namespace HelloConverter
 {
@@ -9,9 +10,11 @@ namespace HelloConverter
         {
             InitializeComponent();
             DataContext = this;
-            EnumValue = SimpleEnum.ValueThree;
+            CollectionsViewModel = new CollectionsViewModel();
+            EnumViewModel = new EnumViewModel();
         }
 
-        public SimpleEnum EnumValue { get; set; }
+        public CollectionsViewModel CollectionsViewModel { get; set; }
+        public EnumViewModel EnumViewModel { get; set; }
     }
 }

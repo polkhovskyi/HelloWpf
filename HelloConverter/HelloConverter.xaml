@@ -9,17 +9,32 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <converters:ValueEqualsParameterConverter x:Key="ValueEqualsParameterConverter" />
+        <converters:CollectionToVisibilityConverter x:Key="CollectionToVisibilityConverter" />
     </UserControl.Resources>
-    <StackPanel>
-        <RadioButton GroupName="TestGroup" Content="ValueOne"
+    <TabControl>
+        <TabItem Header="Enum" DataContext="{Binding EnumViewModel}">
+            <StackPanel>
+                <RadioButton GroupName="TestGroup" Content="ValueOne"
                          IsChecked="{Binding Path=EnumValue, Converter={StaticResource ValueEqualsParameterConverter}, ConverterParameter={x:Static data:SimpleEnum.ValueOne}}" 
                          />
-        <RadioButton GroupName="TestGroup" Content="ValueTwo"
+                <RadioButton GroupName="TestGroup" Content="ValueTwo"
                          IsChecked="{Binding Path=EnumValue, Converter={StaticResource ValueEqualsParameterConverter}, ConverterParameter={x:Static data:SimpleEnum.ValueTwo}}" 
                          />
-        <RadioButton GroupName="TestGroup" Content="ValueThree"
+                <RadioButton GroupName="TestGroup" Content="ValueThree"
                          IsChecked="{Binding Path=EnumValue, Converter={StaticResource ValueEqualsParameterConverter}, ConverterParameter={x:Static data:SimpleEnum.ValueThree}}" 
                          />
-
-    </StackPanel>
+            </StackPanel>
+        </TabItem>
+        <TabItem Header="Collections" DataContext="{Binding CollectionsViewModel}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <ListBox Background="LightBlue" Visibility="{Binding NotEmptyCollection, Converter={StaticResource CollectionToVisibilityConverter}}" ItemsSource="{Binding NotEmptyCollection}" Grid.Column="0"></ListBox>
+                <ListBox Background="LightBlue" Visibility="{Binding EmptyCollection, Converter={StaticResource CollectionToVisibilityConverter}}" ItemsSource="{Binding EmptyCollection}" Grid.Column="1"></ListBox>
+            </Grid>
+        </TabItem>
+    </TabControl>
+    
 </UserControl>
